@@ -1,49 +1,28 @@
-#include <ctype.h>
-#include <stdlib.h>
-#include "main.h"
 #include <stdio.h>
-
+#include <stdlib.h>
+#include <ctype.h>
 /**
- *main - counts and cmd line arguments
- *
- *@argc: counts cmd line arguments
- *
- *@argv: points to cmd line arguments
- *
- *Description: Adds postive command-line arg numbers
- *
- *Return: 1 if error
+ * main - adds positive numbers.
+ * @argc: number of command line arguments.
+ * @argv: array that contains the program command line arguments.
+ * Return: 0 - success.
  */
-
 int main(int argc, char *argv[])
 {
-	int x = 0;
-	int i;
+	int i, j, add = 0;
 
-	if (argc == 1) /* argc == 1 is the program name only*/
+	for (i = 1; i < argc; i++)
 	{
-		printf("O\n");
-		return (0);
-	}
-	for (i = 1; i < argc; i++)/*to loop through each argument*/
-	{
-		char *arg = argv[i];/*points to individual characters in argv[i] strings*/
-
-	while (*arg)
-	{
-		if (!isdigit(*arg))/*checks if string is wholly numbers*/
+		for (j = 0; argv[i][j] != '\0'; j++)
 		{
-			printf("Error\n");
-			return (1);
+			if (!isdigit(argv[i][j]))
+			{
+				printf("Error\n");
+				return (1);
+			}
 		}
-		arg++;
+		add += atoi(argv[i]);
 	}
-
-	x += atoi(argv[i]); /* picks from for loop*/
-
-
-	}
-
-	printf("%d\n", x);
-		return (0);
+	printf("%d\n", add);
+	return (0);
 }
